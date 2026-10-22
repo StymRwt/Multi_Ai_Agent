@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --agent: #7c97ff;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-ink-950 font-sans text-fog-100 antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--agent);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--agent) 40%, transparent);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2d3448 transparent;
+  }
+}
+
+/* Rendered assistant Markdown */
+.markdown {
+  @apply text-[15px] leading-7 text-fog-100;
+  overflow-wrap: anywhere;
+}
+.markdown > * + * {
+  @apply mt-3;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  @apply font-display font-semibold text-white;
+}
+.markdown h1 { @apply mt-5 text-xl; }
+.markdown h2 { @apply mt-5 text-lg; }
+.markdown h3,
+.markdown h4 { @apply mt-4 text-base; }
+.markdown ul { @apply list-disc pl-5; }
+.markdown ol { @apply list-decimal pl-5; }
+.markdown li + li { @apply mt-1; }
+.markdown li::marker { color: var(--agent); }
+.markdown a { @apply underline underline-offset-2; color: var(--agent); }
+.markdown strong { @apply font-semibold text-white; }
+.markdown blockquote { @apply border-l-2 border-ink-600 pl-4 text-fog-300; }
+.markdown hr { @apply border-ink-700; }
+.markdown :not(pre) > code {
+  @apply rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[13px] text-fog-100;
+}
+.markdown table { @apply w-full border-collapse text-sm; }
+.markdown th,
+.markdown td { @apply border border-ink-700 px-3 py-2 text-left; }
+.markdown th { @apply bg-ink-800 font-semibold; }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
